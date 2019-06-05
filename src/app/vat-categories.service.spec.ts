@@ -18,4 +18,6 @@ describe('VatCategoriesService', () => {
 
     expect(service.getVat(undefined)).toBeNaN();
   });
+
+
 });

@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { InvoiceCalculatorService, InvoiceLine, Invoice, InvoiceLineComplete } from './invoice-calculator.service';
 import { FormsModule } from '@angular/forms';
+import { nextContext } from '@angular/core/src/render3';
 
 class InvoiceCalculatorServiceMock {
   public CalculateInvoice(invoiceLines: InvoiceLine[]): Invoice {
@@ -116,4 +117,20 @@ describe('AppComponent', () => {
     const totalPriceExclusiveVatInput: HTMLTableDataCellElement = ne.querySelector('#totalPriceExclusiveVat');
     expect(totalPriceExclusiveVatInput.textContent).toBe('42.00');
   });
+
+
+
+  // test made with Christina
+  it('should not be lower than 0', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const de = fixture.debugElement;
+    const ne: HTMLElement = de.nativeElement;
+    const app: AppComponent = de.componentInstance;
+
+    expect(app.priceInclusiveVat).toBeGreaterThanOrEqual(0);
+  });
+
+
+
+
 });
